@@ -15,11 +15,14 @@ def get_json_result(url):
 def get_url_from_league(league):
     return f"https://kr.api.riotgames.com/lol/league/v4/{league}/by-queue/RANKED_SOLO_5x5?api_key={public_key}" 
 
-leagues = ["challengerleagues", "grandmasterleagues", "masterleagues"]
-for league in leagues:
-    league_url = get_url_from_league(league)
-    league_json_result = get_json_result(league_url)
-    league_file_name = league[:-1] + ".json"
-    save_json(league_json_result, league_file_name)
+def get_entries():
+    leagues = ["challengerleagues", "grandmasterleagues", "masterleagues"]
+    for league in leagues:
+        league_url = get_url_from_league(league)
+        league_json_result = get_json_result(league_url)
+        entries_json_result = league_json_result["entries"]
+        league_file_name = league[:-1] + ".json"
+        save_json(entries_json_result, league_file_name)
 
-# get(f"https://kr.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key={public_key}").json()
+if __name__ == "__main__":
+    get_entries()
