@@ -13,6 +13,6 @@ class APITest(TestCase):
 
     def test_API_summoner_by_accountID(self):
         accountID = "1"
-        league_url = API.summoner_by_summonerID(accountID)
+        league_url = API.summoner_by_puuid(accountID)
         expected_league_url = f"https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-account/{accountID}?api_key={public_key}"
         self.assertEqual(expected_league_url, league_url)
